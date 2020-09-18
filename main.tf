@@ -51,11 +51,9 @@ resource "aws_autoscaling_group" "first_asg" {
   }
 }
 
-#resource "aws_alb" "terr_elb" {
-#  name               = "terraform-lb"
-#  load_balancer_type = "application"
-#  availability_zones = ["us-east-1a", "us-east-1c"]
-#  subnets            = data.aws_subnet_ids.default.ids
+resource "aws_elb" "terr_elb" {
+  name               = "terraform-lb"
+  availability_zones = ["us-east-1a", "us-east-1c"]
 
   listener {
     instance_port     = 80
@@ -68,8 +66,8 @@ resource "aws_autoscaling_group" "first_asg" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:8080/"
-    interval            = 30
+    target              = "HTTP:80/"
+    interval            = 20
   }
 }
 
