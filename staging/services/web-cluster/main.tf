@@ -21,5 +21,5 @@ module "web-cluster" {
   db_remote_state_key    = "staging/mysql/terraform.tfstate"
   instance_type          = "t2.micro"
   min_size               = 2
-  max_size               = 2
+  max_size               = 3
 }
