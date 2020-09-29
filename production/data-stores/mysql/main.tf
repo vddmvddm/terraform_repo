@@ -1,9 +1,7 @@
 terraform {
   backend "s3" {
-    #bucket = var.db_remote_state_bucket
-    #key    = var.db_remote_state_key
     bucket         = "terraform-storage-bucket-mars"
-    key            = "staging/mysql/terraform.tfstate"
+    key            = "production/mysql/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-up-and-running-locks"
     encrypt        = true
@@ -15,6 +13,6 @@ provider "aws" {
 }
 module "mysql" {
   source      = "../../../modules/data-stores/mysql"
-  db_name     = "stagingdb"
+  db_name     = "productiondb"
   db_password = "ThisIsMySecuredCode!"
 }
